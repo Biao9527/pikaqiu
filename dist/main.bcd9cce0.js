@@ -103,88 +103,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"css.js":[function(require,module,exports) {
-"use strict";
+})({"main.js":[function(require,module,exports) {
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var string = "\n.skin *::after,\n.skin *::before {\n  box-sizing: border-box;\n}\n.skin {\n  position: relative;\n  min-height: 50vh;\n   background-color: #ffe600;\n}\n.nose {\n  border: 10px solid black;\n  border-color: black transparent transparent;\n  border-bottom: none;\n  width: 0px;\n  height: 0px;\n  position: absolute;\n  top: 165px;\n  left: 50%;\n  margin-left: -10px;\n}\n@keyframes wave {\n  0% {\n    transform: rotate(0deg);\n  }\n  33% {\n    transform: rotate(10deg);\n  }\n  66% {\n    transform: rotate(-10deg);\n  }\n  100% {\n    transform: rotate(0deg);\n  }\n}\n.nose:hover {\n  transform-origin: 50% 100%;\n  animation: wave 400ms infinite linear;\n}\n.yuan {\n  width: 20px;\n  height: 6px;\n  position: absolute;\n  bottom: 10px;\n  left: -10px;\n  border-top-left-radius: 10px 5px;\n  border-top-right-radius: 10px 5px;\n  background-color: black;\n}\n.eye {\n  border: 2px solid black;\n  width: 64px;\n  height: 64px;\n  position: absolute;\n  top: 120px;\n  left: 50%;\n  margin-left: -32px;\n  border-radius: 50%;\n  background-color: #2e2e2e;\n}\n.eye::before {\n  content: \"\";\n  display: block;\n  border: 2px solid #000;\n  border-radius: 50%;\n  background-color: #fff;\n  width: 30px;\n  height: 30px;\n  position: absolute;\n  left: 6px;\n  top: 1px;\n}\n.left {\n  transform: translateX(-120px);\n}\n.right {\n  transform: translateX(120px);\n}\n.mouth {\n  width: 200px;\n  height: 100px;\n  position: absolute;\n  left: 50%;\n  top: 200px;\n  margin-left: -100px;\n}\n.mouth > .up {\n  position: relative;\n  top: -30px;\n  z-index: 1;\n}\n.mouth > .up > .lipLeft {\n  border: 3px solid black;\n  width: 90px;\n  height: 30px;\n  background: #ffe600;\n  border-bottom-left-radius: 50px 25px;\n  border-top-color: transparent;\n  border-right-color: transparent;\n  position: relative;\n  transform: rotate(-25deg) translateX(-48px);\n  position: absolute;\n  left: 50%;\n  margin-left: -45px;\n}\n.mouth > .up > .lipLeft::before {\n  content: \"\";\n  display: block;\n  width: 100px;\n  height: 3px;\n  position: absolute;\n  right: 0px;\n  top: -3px;\n  background-color: #ffe600;\n}\n.mouth > .up > .lipRight {\n  border: 3px solid black;\n  width: 90px;\n  height: 30px;\n  background: #ffe600;\n  border-bottom-right-radius: 50px 25px;\n  border-top-color: transparent;\n  border-left-color: transparent;\n  position: relative;\n  transform: rotate(25deg) translateX(48px);\n  position: absolute;\n  left: 50%;\n  margin-left: -45px;\n}\n.mouth > .up > .lipRight::before {\n  content: \"\";\n  display: block;\n  width: 100px;\n  height: 3px;\n  position: absolute;\n  left: 0px;\n  top: -3px;\n  background-color: #ffe600;\n}\n.mouth > .down {\n  width: 150px;\n  height: 160px;\n  position: absolute;\n  left: 50%;\n  top: 1px;\n  margin-left: -75px;\n  overflow: hidden;\n}\n.mouth > .down > .yuan1 {\n  border: 3px solid black;\n  width: 150px;\n  height: 1000px;\n  position: absolute;\n  left: 50%;\n  bottom: 0;\n  margin-left: -75px;\n  border-radius: 75px/300px;\n  background: #9b000a;\n  overflow: hidden;\n}\n.mouth > .down > .yuan1 > .yuan2 {\n  width: 150px;\n  height: 150px;\n  position: absolute;\n  left: 50%;\n  bottom: -20px;\n  margin-left: -75px;\n  border-top-left-radius: 100%;\n  border-top-right-radius: 100%;\n  background: #ff485f;\n}\n.face {\n  border: 3px solid black;\n  width: 88px;\n  height: 88px;\n  border-radius: 50%;\n  background: #f00;\n  position: absolute;\n  top: 240px;\n  left: 50%;\n  margin-left: -44px;\n}\n\n.face > img {\n  position: absolute;\n  left: 50%;\n  top: 50%;\n}\n.faceRight {\n  transform: translateX(180px);\n}\n.faceLeft {\n  transform: translateX(-180px);\n}\n.faceLeft > img {\n  transform: rotateY(-180deg);\n  transform-origin: 0 0;\n}\n";
-exports.default = string;
-},{}],"test.js":[function(require,module,exports) {
-'use strict';
-
-var _css = require('./css.js');
-
-var _css2 = _interopRequireDefault(_css);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var player = {
-    n: 0,
-    time: 100,
-    id: undefined,
-    ui: {
-        demo: document.querySelector('#demo'),
-        demo2: document.querySelector('#demo2')
-
-    },
-    init: function init() {
-        player.ui.demo.innerText = _css2.default.substr(0, player.n);
-        player.ui.demo2.innerHTML = _css2.default.substr(0, player.n);
-        player.play();
-        player.bindEvents();
-    },
-    events: {
-        '#btnPause': 'pause',
-        '#btnPlay': 'play',
-        '#btnSlow': 'slow',
-        '#btnNormal': 'normal',
-        '#btnFast': 'fast'
-    },
-    bindEvents: function bindEvents() {
-        for (var key in player.events) {
-            if (player.events.hasOwnProperty(key)) {
-                var value = player.events[key];
-                document.querySelector(key).onclick = player[value];
-            }
-        }
-    },
-    run: function run() {
-        player.n += 1;
-        if (player.n > _css2.default.length) {
-            window.clearInterval(player.id);
-            return;
-        }
-        player.ui.demo.innerText = _css2.default.substr(0, player.n);
-        player.ui.demo2.innerHTML = _css2.default.substr(0, player.n);
-        player.ui.demo.scrollTop = player.ui.demo.scrollHeight;
-    },
-    pause: function pause() {
-        window.clearInterval(player.id);
-    },
-    play: function play() {
-        player.id = setInterval(player.run, player.time);
-    },
-    slow: function slow() {
-        player.pause();
-        player.time = 300;
-        player.play();
-    },
-    normal: function normal() {
-        player.pause();
-        player.time = 100;
-        player.play();
-    },
-    fast: function fast() {
-        player.pause();
-        player.time = 0;
-        player.play();
-    }
-};
-
-player.init();
-},{"./css.js":"css.js"}],"C:\\Users\\Z\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
+},{}],"C:\\Users\\Z\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -213,7 +134,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '61641' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '61627' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -354,5 +275,4 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["C:\\Users\\Z\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\hmr-runtime.js","test.js"], null)
-//# sourceMappingURL=/test.85a25b37.map
+},{}]},{},["C:\\Users\\Z\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\hmr-runtime.js","main.js"], null)
